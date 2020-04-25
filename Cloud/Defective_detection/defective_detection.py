@@ -42,7 +42,7 @@ np.save('sample_target.npy', target_arr)
 
 X_test = np.array(face_data)
 Y_target = np.array(face_class)
-a_train, a_test, b_train, b_test = train_test_split(X_test, Y_target, test_size=0)
+a_train, a_test, b_train, b_test = train_test_split(X_test, Y_target, test_size=0.1)
 class_num = Y_target.max() + 1
 
 model = Sequential()
@@ -91,12 +91,12 @@ model.compile(loss='sparse_categorical_crossentropy', optimizer=SGD(lr=0.01), me
 hist = model.fit(a_train, b_train, batch_size=25, epochs=30, validation_split=0.1, verbose=1)
 
 # plot acc and val_acc
-plt.plot(hist.history["acc"], label="acc", ls="-", marker="o")
-plt.plot(hist.history["val_acc"], label="val_acc", ls="-", marker="x")
-plt.ylabel("accuracy")
-plt.xlabel("epoch")
-plt.legend(loc="best")
-plt.show()
+# plt.plot(hist.history["acc"], label="acc", ls="-", marker="o")
+# plt.plot(hist.history["val_acc"], label="val_acc", ls="-", marker="x")
+# plt.ylabel("accuracy")
+# plt.xlabel("epoch")
+# plt.legend(loc="best")
+# plt.show()
 
 # save learning model
 model.save('defective_detection_model.h5')
